@@ -22,3 +22,17 @@ $factory->define(Cawoch\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(\Cawoch\Client::class, function (\Faker\Generator $faker) {
+
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        '2nd_last_name' => $faker->lastName,
+        'phone'     => $faker->phoneNumber,
+        'mobile'    => $faker->phoneNumber,
+        'address'   => $faker->address,
+        'email'     => $faker->email,
+        'notes'     => $faker->paragraphs(3, true),
+    ];
+});
