@@ -14,7 +14,10 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+           'email' => 'unique:clients'
+        ]);
         $client = Client::create($request->all());
-        return redirect(route('order.create', $client));
+        return redirect(route('order.create', $client))->with('success');
     }
 }

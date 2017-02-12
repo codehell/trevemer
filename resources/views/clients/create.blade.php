@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">@lang('app.client.create_title')</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('client.create') }}">
                         {{ csrf_field() }}
@@ -56,8 +56,7 @@
                                        type="text"
                                        class="form-control"
                                        name="2nd_last_name"
-                                       value="{{ old('2nd_last_name') }}"
-                                       required>
+                                       value="{{ old('2nd_last_name') }}">
 
                                 @if ($errors->has('2nd_last_name'))
                                     <span class="help-block">
@@ -75,8 +74,7 @@
                                        type="text"
                                        class="form-control"
                                        name="phone"
-                                       value="{{ old('phone') }}"
-                                       required>
+                                       value="{{ old('phone') }}">
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
@@ -87,15 +85,14 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
-                            <label for="phone" class="col-md-4 control-label">@lang('app.mobile')</label>
+                            <label for="mobile" class="col-md-4 control-label">@lang('app.mobile')</label>
 
                             <div class="col-md-6">
                                 <input id="mobile"
                                        type="text"
                                        class="form-control"
                                        name="mobile"
-                                       value="{{ old('phone') }}"
-                                       required>
+                                       value="{{ old('phone') }}">
 
                                 @if ($errors->has('mobile'))
                                     <span class="help-block">
@@ -138,18 +135,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('notes') ? ' has-error' : '' }}">
-                            <label for="phone" class="col-md-4 control-label">@lang('app.notes')</label>
+                        <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
+                            <label for="phone" class="col-md-4 control-label">@lang('app.note')</label>
 
                             <div class="col-md-6">
-                                <textarea id="notes"
+                                <textarea id="note"
                                           class="form-control"
-                                          name="notes"
-                                          rows="5">{{ old('notes') }}</textarea>
+                                          name="note"
+                                          rows="5">{{ old('note') }}</textarea>
 
-                                @if ($errors->has('notes'))
+                                @if ($errors->has('note'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('notes') }}</strong>
+                                        <strong>{{ $errors->first('note') }}</strong>
                                     </span>
                                 @endif
                             </div>

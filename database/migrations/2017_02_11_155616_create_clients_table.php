@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('mobile');
             $table->string('address');
             $table->string('email')->unique();
-            $table->text('notes');
+            $table->text('note');
             $table->timestamps();
         });
     }

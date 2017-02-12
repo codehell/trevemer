@@ -1,15 +1,5 @@
 <?php
 
-// Users
-
-Route::get('user/{user}/edit', [
-    'uses' => 'Auth\UserController@edit',
-    'as' => 'user.edit',
-]);
-
-Route::post('user/{user}/edit', [
-    'uses' => 'Auth\UserController@update',
-]);
 
 // Clients
 

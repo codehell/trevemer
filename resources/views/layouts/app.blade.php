@@ -70,7 +70,7 @@
                                         </form>
                                     </li>
 
-                                    <li><a href="{{ route('user.edit', Auth::user()) }}">@lang('app.edit')</a></li>
+                                    <li><a href="{{ route('user.edit') }}">@lang('app.edit')</a></li>
                                 </ul>
                             </li>
                         @endif

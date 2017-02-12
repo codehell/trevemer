@@ -17,11 +17,11 @@ class EditUsersTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user)
-            ->get(route('user.edit', $user))
+            ->get(route('user.edit'))
             ->assertStatus(200)
             ->assertSee($user->email);
 
-        $response = $this->post(route('user.edit', $user), [
+        $response = $this->post(route('user.edit'), [
             'name' => 'codehell',
             'email'=> 'admin@codehell.net',
         ]);
