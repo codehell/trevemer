@@ -41,6 +41,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapAuthRoutes();
 
+        $this->mapManagerRoutes();
+
         //
     }
 
@@ -83,5 +85,17 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('admin')
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
+    }
+
+    /**
+     * Define the "auth" routes for the application.
+     *
+     * @return void
+     */
+    protected function mapManagerRoutes()
+    {
+        Route::middleware('manager')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/manager.php'));
     }
 }

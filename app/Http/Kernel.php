@@ -43,6 +43,12 @@ class Kernel extends HttpKernel
             Authorize::class.':admin',
         ],
 
+        'manager' => [
+            'web',
+            'auth',
+            Authorize::class.':manager',
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',

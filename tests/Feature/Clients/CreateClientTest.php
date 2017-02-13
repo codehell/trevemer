@@ -2,9 +2,8 @@
 
 namespace Tests\Feature\Clients;
 
+use Cawoch\User;
 use Cawoch\Client;
-use Illuminate\Support\MessageBag;
-use Illuminate\Support\ViewErrorBag;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -17,16 +16,7 @@ class CreateClientTest extends TestCase
     {
         $user = $this->newAdmin();
 
-        $data = [
-            'first_name' => 'Pepe',
-            'last_name' => 'Perez',
-            '2nd_last_name' => 'Cuesta',
-            'phone'     => '963711111',
-            'mobile'    => '650900000',
-            'address'   => 'Calle Humanista Centollo 1-A',
-            'email'     => 'client@dominio.loc',
-            'note'     => 'Cliente muy exigente pero que no pone pegas en cuanto a los presupuestos'
-        ];
+        $data = $this->clientData();
 
         $this->actingAs($user)
             ->get('client/create')
@@ -42,38 +32,50 @@ class CreateClientTest extends TestCase
     }
 
     /** @test */
-    function a_non_admin_cant_create_a_client()
+    function a_user_cant_create_a_client()
     {
-        $this->post('client/create', [])
-        ->assertRedirect('/login');
+        $user = factory(User::class)->create([
+            'role' => 'user',
+        ]);
+
+        $this->actingAs($user)
+            ->post('client/create', [])
+            ->assertStatus(403);
     }
 
     /** @test */
     function email_client_must_be_unique()
     {
-        $user = $this->newAdmin();
+        $user = $this->newManager();
+
         $client = factory(Client::class)->create([
             'email' => 'client@dominio.loc',
         ]);
 
-        $data = [
-            'first_name' => 'Pepe',
-            'last_name' => 'Perez',
-            '2nd_last_name' => 'Cuesta',
-            'phone'     => '963711111',
-            'mobile'    => '650900000',
-            'address'   => 'Calle Humanista Centollo 1-A',
-            'email'     => 'client@dominio.loc',
-            'note'     => 'Cliente muy exigente pero que no pone pegas en cuanto a los presupuestos'
-        ];
+        $this->actingAs($user);
 
-        $response = $this->actingAs($user)
-            ->post(route('client.create'), $data);
+        $this->post(route('client.create'), $this->clientData());
 
-        $veb = new ViewErrorBag();
-        $mesb = new MessageBag(['email' => 'The email has already been taken.']);
-        $veb->put('default', $mesb);
+        $this->assertEquals('The email has already been taken.', session()->get('errors')->first('email'));
 
-        $response->assertSessionHas('errors', $veb);
+    }
+
+    /** @test */
+    function phone_or_mobile_fields_are_required()
+    {
+        $manager = $this->newManager();
+
+        $this->actingAs($manager);
+
+        $data = $this->clientData();
+        $data['phone'] = '';
+        $data['mobile'] = '';
+        
+        $this->post(route('client.create'), $data);
+
+        $this->assertEquals(
+            'The phone field is required when mobile is not present.',
+            session()->get('errors')->first('phone')
+        );
     }
 }
