@@ -20,7 +20,6 @@ Route::post('client/{client}/edit', [
     'uses' => 'ClientController@update',
 ]);
 
-
 // Orders
 
 Route::get('order/{client}/create', [

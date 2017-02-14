@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Auth;
 
 use Cawoch\User;
 use Tests\TestCase;
@@ -24,11 +24,19 @@ class EditUsersTest extends TestCase
         $response = $this->post(route('user.edit'), [
             'name' => 'codehell',
             'email'=> 'admin@codehell.net',
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
         ]);
 
         $this->assertDatabaseHas('users', [
             'name' => 'codehell',
             'email'=> 'admin@codehell.net',
+        ]);
+
+        $this->seeCredentials([
+            'name' => 'codehell',
+            'email'=> 'admin@codehell.net',
+            'password' => 'secret',
         ]);
 
         $response->assertRedirect('home');

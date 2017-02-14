@@ -24,8 +24,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('user/edit', [
     'uses' => 'Auth\UserController@edit',
     'as' => 'user.edit',
-]);
+])->middleware('auth');
 
 Route::post('user/edit', [
     'uses' => 'Auth\UserController@update',
-]);
+])->middleware('auth');

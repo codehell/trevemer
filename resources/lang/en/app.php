@@ -7,6 +7,7 @@ return [
     'first_name' => 'Fist name',
     'last_name' => 'Last name',
     'mobile' => 'Mobile',
+    'name' => 'Name',
     'note' => 'Notes',
     'phone'  => 'Phone',
     'register' => 'Register',

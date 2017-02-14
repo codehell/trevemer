@@ -61,7 +61,7 @@ class CreateClientTest extends TestCase
     }
 
     /** @test */
-    function phone_or_mobile_fields_are_required()
+    function phone_are_required_if_mobile_is_not_present()
     {
         $manager = $this->newManager();
 
@@ -70,7 +70,7 @@ class CreateClientTest extends TestCase
         $data = $this->clientData();
         $data['phone'] = '';
         $data['mobile'] = '';
-        
+
         $this->post(route('client.create'), $data);
 
         $this->assertEquals(
