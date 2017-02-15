@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'snd_last_name' => '2nd last name',
+    'snd_last_name' => '2nd Last name',
     'address' => 'Address',
     'edit' => 'Edit',
     'first_name' => 'Fist name',
@@ -13,6 +13,7 @@ return [
     'register' => 'Register',
     'update' => 'Update',
     'email' => 'E-Mail Address',
+    'id_card' => 'Id Card',
 
     'client' => [
         'create_title' => 'Register new client',

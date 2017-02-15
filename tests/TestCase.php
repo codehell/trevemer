@@ -29,6 +29,7 @@ abstract class TestCase extends BaseTestCase
             'first_name' => 'Pepe',
             'last_name' => 'Perez',
             'snd_last_name' => 'Cuesta',
+            'id_card' => '44444444A',
             'phone'     => '963711111',
             'mobile'    => '650900000',
             'address'   => 'Calle Humanista Centollo 1-A',

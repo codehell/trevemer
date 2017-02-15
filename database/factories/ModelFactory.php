@@ -30,6 +30,7 @@ $factory->define(\Cawoch\Client::class, function (\Faker\Generator $faker) {
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'snd_last_name' => $faker->lastName,
+        'id_card' => $faker->randomNumber(8).$faker->randomLetter,
         'phone' => $faker->phoneNumber,
         'mobile' => $faker->phoneNumber,
         'address' => $faker->address,

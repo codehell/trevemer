@@ -32,6 +32,27 @@ class CreateClientTest extends TestCase
     }
 
     /** @test */
+    function a_manager_can_create_a_client()
+    {
+        $user = $this->newManager();
+
+        $data = $this->clientData();
+
+        $this->actingAs($user)
+            ->get('client/create')
+            ->assertStatus(200);
+
+        $response = $this->post('client/create', $data);
+
+        $this->assertDatabaseHas('clients', $data);
+
+        $client = Client::where('email', 'client@dominio.loc')->first();
+
+        $response->assertRedirect(route('order.create', $client));
+    }
+
+
+    /** @test */
     function a_user_cant_create_a_client()
     {
         $user = factory(User::class)->create([
@@ -39,7 +60,10 @@ class CreateClientTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->post('client/create', [])
+            ->get('client/create')
+            ->assertStatus(403);
+
+        $this->post('client/create', [])
             ->assertStatus(403);
     }
 

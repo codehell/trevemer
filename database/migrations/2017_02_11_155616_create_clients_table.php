@@ -18,6 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('snd_last_name');
+            $table->string('id_card')->unique();
             $table->string('phone')->nullable();
             $table->string('mobile')->nullable();
             $table->string('address');

@@ -15,13 +15,13 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        // Todo: Falta acabar las validaciones
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
             'snd_last_name' => 'required',
+            'id_card' => 'required',
             'phone' => 'required_without:mobile',
-            'email' => 'unique:clients'
+            'email' => 'unique:clients',
         ]);
         $client = Client::create($request->all());
         return redirect(route('order.create', $client))->with('success');
@@ -38,6 +38,8 @@ class ClientController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'snd_last_name' => 'required',
+            'id_card' => 'required',
+            'phone' => 'required_without:mobile',
             'email' => [Rule::unique('clients')->ignore($client->id)],
         ]);
 

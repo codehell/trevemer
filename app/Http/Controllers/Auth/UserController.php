@@ -18,7 +18,6 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $auth = auth()->user();
-
         $this->validate($request, [
             'name' => [
                 'required',
@@ -35,6 +34,7 @@ class UserController extends Controller
             $auth->password = bcrypt($request->get('password'));
         }
         $auth->save();
+
         return redirect('home');
     }
 }

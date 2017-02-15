@@ -66,6 +66,24 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('id_card') ? ' has-error' : '' }}">
+                            <label for="id_card" class="col-md-4 control-label">@lang('app.id_card')</label>
+
+                            <div class="col-md-6">
+                                <input id="id_card"
+                                       type="text"
+                                       class="form-control"
+                                       name="id_card"
+                                       value="{{ old('id_card') }}">
+
+                                @if ($errors->has('id_card'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('id_card') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="phone" class="col-md-4 control-label">@lang('app.phone')</label>
 

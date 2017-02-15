@@ -12,7 +12,7 @@ class EditUsersTest extends TestCase
     use DatabaseTransactions;
 
     /** @test */
-    public function a_user_can_edit_his_profile()
+    function a_user_can_edit_his_profile()
     {
         $user = factory(User::class)->create();
 
@@ -26,11 +26,6 @@ class EditUsersTest extends TestCase
             'email'=> 'admin@codehell.net',
             'password' => 'secret',
             'password_confirmation' => 'secret',
-        ]);
-
-        $this->assertDatabaseHas('users', [
-            'name' => 'codehell',
-            'email'=> 'admin@codehell.net',
         ]);
 
         $this->seeCredentials([
