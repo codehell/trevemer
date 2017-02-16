@@ -8,6 +8,13 @@ use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
+
+    public function index()
+    {
+        $clients = Client::paginate();
+        return view('clients.index', compact('clients'));
+    }
+
     public function create()
     {
         return view('clients.create');
@@ -19,7 +26,7 @@ class ClientController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'snd_last_name' => 'required',
-            'id_card' => 'required',
+            'id_card' => 'required|unique:clients',
             'phone' => 'required_without:mobile',
             'email' => 'unique:clients',
         ]);
@@ -38,7 +45,7 @@ class ClientController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'snd_last_name' => 'required',
-            'id_card' => 'required',
+            'id_card' => ['required', Rule::unique('clients')->ignore($client->id)],
             'phone' => 'required_without:mobile',
             'email' => [Rule::unique('clients')->ignore($client->id)],
         ]);

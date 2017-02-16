@@ -11,25 +11,6 @@ class CreateClientTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /** @test */
-    function a_admin_can_create_a_client()
-    {
-        $user = $this->newAdmin();
-
-        $data = $this->clientData();
-
-        $this->actingAs($user)
-            ->get('client/create')
-            ->assertStatus(200);
-
-        $response = $this->post('client/create', $data);
-
-        $this->assertDatabaseHas('clients', $data);
-
-        $client = Client::where('email', 'client@dominio.loc')->first();
-
-        $response->assertRedirect(route('order.create', $client));
-    }
 
     /** @test */
     function a_manager_can_create_a_client()
@@ -60,11 +41,25 @@ class CreateClientTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->get('client/create')
+            ->post('client/create', [$this->clientData()])
             ->assertStatus(403);
+    }
 
-        $this->post('client/create', [])
-            ->assertStatus(403);
+    /** @test */
+    function id_card_must_be_unique()
+    {
+        $client = factory(Client::class)->create();
+        $id_card = $client->id_card;
+        $client_data = $this->clientData([
+            'id_card' => $client->id_card,
+        ]);
+        $this->actingAs($this->newManager())
+            ->post(route('client.create'), $client_data);
+
+        $this->assertEquals(
+            'The id card has already been taken.',
+            session()->get('errors')->first('id_card')
+        );
     }
 
     /** @test */
@@ -80,7 +75,10 @@ class CreateClientTest extends TestCase
 
         $this->post(route('client.create'), $this->clientData());
 
-        $this->assertEquals('The email has already been taken.', session()->get('errors')->first('email'));
+        $this->assertEquals(
+            'The email has already been taken.',
+            session()->get('errors')->first('email')
+        );
 
     }
 

@@ -44,6 +44,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ route('client.create') }}">@lang('app.client.create')</a></li>
+                        @can('manager')
+                            <li><a href="{{ route('client.index') }}">@lang('app.client.list')</a></li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

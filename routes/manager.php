@@ -2,23 +2,33 @@
 
 // Clients
 
-Route::get('client/create', [
-    'uses' => 'ClientController@create',
-    'as' => 'client.create',
-]);
+Route::group(['prefix' => 'client'], function () {
 
-Route::post('client/create', [
-    'uses' => 'ClientController@store',
-]);
+    Route::get('create', [
+        'uses' => 'ClientController@create',
+        'as' => 'client.create',
+    ]);
 
-Route::get('client/{client}/edit', [
-    'uses' => 'ClientController@edit',
-    'as' => 'client.edit',
-]);
+    Route::post('create', [
+        'uses' => 'ClientController@store',
+    ]);
 
-Route::post('client/{client}/edit', [
-    'uses' => 'ClientController@update',
-]);
+    Route::get('{client}/edit', [
+        'uses' => 'ClientController@edit',
+        'as' => 'client.edit',
+    ]);
+
+    Route::post('{client}/edit', [
+        'uses' => 'ClientController@update',
+    ]);
+
+    Route::get('index', [
+        'uses' => 'ClientController@index',
+        'as' => 'client.index',
+    ]);
+
+});
+
 
 // Orders
 

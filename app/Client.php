@@ -10,6 +10,6 @@ class Client extends Model
 
     public function getNameAttribute($key)
     {
-        return $this->first_name .' '.$this->last_name;
+        return $this->first_name .' '.$this->last_name.' '.$this->snd_last_name;
     }
 }

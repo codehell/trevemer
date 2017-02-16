@@ -19,6 +19,7 @@ return [
         'create_title' => 'Register new client',
         'create' => 'New Client',
         'edit_title' => 'Client edition',
-        'update_success' => 'The client :name was successfully updated'
+        'update_success' => 'The client :name was successfully updated',
+        'list' => 'Clients list',
     ]
 ];
