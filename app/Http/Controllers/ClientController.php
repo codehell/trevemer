@@ -9,10 +9,24 @@ use Illuminate\Validation\Rule;
 class ClientController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Client::paginate();
-        return view('clients.index', compact('clients'));
+        $search = '';
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $clients = Client::where('first_name', 'like', "%{$search}%")
+                ->orWhere('last_name', 'like', "%{$search}%")
+                ->orWhere('phone', 'like', "%{$search}%")
+                ->orWhere('mobile', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('id_card', 'like', "%{$search}%")
+                ->orderBy('id', 'desc')
+                ->paginate()
+                ->appends(['search' => $search]);
+        } else {
+            $clients = Client::orderBy('id', 'desc')->paginate();
+        }
+        return view('clients.index', compact('clients', 'search'));
     }
 
     public function create()

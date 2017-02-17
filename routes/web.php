@@ -29,3 +29,11 @@ Route::get('user/edit', [
 Route::post('user/edit', [
     'uses' => 'Auth\UserController@update',
 ])->middleware('auth');
+
+
+// Clients
+
+Route::get('index', [
+    'uses' => 'ClientController@index',
+    'as' => 'client.index',
+]);

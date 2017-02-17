@@ -14,6 +14,7 @@ return [
     'update' => 'Update',
     'email' => 'E-Mail Address',
     'id_card' => 'Id Card',
+    'search' => 'Search',
 
     'client' => [
         'create_title' => 'Register new client',

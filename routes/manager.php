@@ -22,11 +22,6 @@ Route::group(['prefix' => 'client'], function () {
         'uses' => 'ClientController@update',
     ]);
 
-    Route::get('index', [
-        'uses' => 'ClientController@index',
-        'as' => 'client.index',
-    ]);
-
 });
 
 
