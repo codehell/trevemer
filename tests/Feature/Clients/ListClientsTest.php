@@ -47,8 +47,7 @@ class ListClientsTest extends TestCase
     /** @test */
     function guest_user_cant_list_clients()
     {
-        $this->actingAs(factory(User::class)->create())
-            ->get(route('client.index'))
+        $this->get(route('client.index'))
             ->assertRedirect('login');
     }
 }

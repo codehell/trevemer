@@ -19,21 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-// Users
 
-Route::get('user/edit', [
-    'uses' => 'Auth\UserController@edit',
-    'as' => 'user.edit',
-])->middleware('auth');
-
-Route::post('user/edit', [
-    'uses' => 'Auth\UserController@update',
-])->middleware('auth');
-
-
-// Clients
-
-Route::get('index', [
-    'uses' => 'ClientController@index',
-    'as' => 'client.index',
-]);

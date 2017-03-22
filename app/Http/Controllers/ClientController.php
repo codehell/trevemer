@@ -66,6 +66,6 @@ class ClientController extends Controller
 
         $client->update($request->all());
         return redirect(route('client.edit', $client))
-            ->with('success', __('app.client.update_success', ['name' => $client->name]));
+            ->with('success', trans('app.client.update_success', ['name' => $client->name]));
     }
 }
