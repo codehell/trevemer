@@ -14,15 +14,7 @@ class ClientController extends Controller
         $search = '';
         if ($request->has('search')) {
             $search = $request->get('search');
-            $clients = Client::where('first_name', 'like', "%{$search}%")
-                ->orWhere('last_name', 'like', "%{$search}%")
-                ->orWhere('phone', 'like', "%{$search}%")
-                ->orWhere('mobile', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->orWhere('id_card', 'like', "%{$search}%")
-                ->orderBy('id', 'desc')
-                ->paginate()
-                ->appends(['search' => $search]);
+            $clients = Client::search($search);
         } else {
             $clients = Client::orderBy('id', 'desc')->paginate();
         }

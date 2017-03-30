@@ -16,7 +16,9 @@
                                         class="form-control"
                                         name="search"
                                         value="{{ $search }}"
-                                        autofocus>
+                                        autofocus
+                                        required
+                                >
                         </div>
                         <button type="submit" class="btn btn-default">@lang('app.search')</button>
                     </form>
