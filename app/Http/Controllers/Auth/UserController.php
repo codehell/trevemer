@@ -37,4 +37,13 @@ class UserController extends Controller
 
         return redirect('home');
     }
+    public function show($user)
+    {
+        return $user;
+    }
+    public function delete(User $user)
+    {
+        $user->delete();
+        return redirect('home')->with('success', trans('app.user.delete_success', ['name' => $user->name]));
+    }
 }

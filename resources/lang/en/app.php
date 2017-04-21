@@ -9,7 +9,7 @@ return [
     'mobile' => 'Mobile',
     'name' => 'Name',
     'note' => 'Notes',
-    'phone'  => 'Phone',
+    'phones'  => 'Phones',
     'register' => 'Register',
     'update' => 'Update',
     'email' => 'E-Mail Address',
@@ -22,5 +22,9 @@ return [
         'edit_title' => 'Client edition',
         'update_success' => 'The client :name was successfully updated',
         'list' => 'Clients list',
+    ],
+
+    'user' => [
+        'delete_success' => 'The user :name was successfully deleted'
     ]
 ];

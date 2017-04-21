@@ -40,6 +40,10 @@ class ClientController extends Controller
         return redirect(route('order.create', $client))->with('success');
     }
 
+    public function show(User $user)
+    {
+        return $user;
+    }
     public function edit(Client $client)
     {
         return view('clients.edit', compact('client'));

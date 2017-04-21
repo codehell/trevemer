@@ -11,7 +11,6 @@ class CreateClientTest extends TestCase
 {
     use DatabaseTransactions;
 
-
     /** @test */
     function a_manager_can_create_a_client()
     {

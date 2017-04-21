@@ -31,10 +31,12 @@ $factory->define(\Cawoch\Client::class, function (\Faker\Generator $faker) {
         'last_name' => $faker->lastName,
         'snd_last_name' => $faker->lastName,
         'id_card' => $faker->randomNumber(8).$faker->randomLetter,
-        'phone' => $faker->phoneNumber,
         'mobile' => $faker->phoneNumber,
+        'phones' => $faker->phoneNumber . ' ' . $faker->phoneNumber,
         'address' => $faker->address,
+        'postal_code' => $faker->postcode,
         'email' => $faker->unique()->email,
+        'car_plate' => $faker->regexify('[0-9]{4}[A-Z]{3}'),
         'note' => $faker->paragraphs(3, true),
     ];
 });

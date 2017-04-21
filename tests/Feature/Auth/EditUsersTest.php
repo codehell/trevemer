@@ -36,4 +36,14 @@ class EditUsersTest extends TestCase
 
         $response->assertRedirect('home');
     }
+
+    /** @test */
+    function admin_can_access_users_profiles()
+    {
+        $user = $this->newAdmin();
+
+        $this->actingAs($user)
+            ->get(route('user.edit'))
+            ->assertStatus(200);
+    }
 }

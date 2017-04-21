@@ -20,10 +20,11 @@ class EditClientTest extends TestCase
             'last_name' => 'Perez',
             'snd_last_name' => 'Cuesta',
             'id_card' => '54444444B',
-            'phone' => '963711112',
+            'phones' => '963711112 666332211',
             'mobile' => '650900001',
             'address' => 'Calle Humanista Centollo 1-B',
             'email' => 'client@dominio.lo',
+            'car_plate' => '4567ABC',
             'note' => 'Cliente nada exigente pero que pone pegas en cuanto a los presupuestos'
         ];
 

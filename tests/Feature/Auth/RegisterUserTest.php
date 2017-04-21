@@ -27,6 +27,7 @@ class RegisterUserTest extends TestCase
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ]);
+
         // then
         $this->seeCredentials([
             'name' => 'codehell',
