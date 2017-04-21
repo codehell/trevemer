@@ -84,19 +84,19 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                            <label for="phone" class="col-md-4 control-label">@lang('app.phone')</label>
+                        <div class="form-group{{ $errors->has('phones') ? ' has-error' : '' }}">
+                            <label for="phones" class="col-md-4 control-label">@lang('app.phones')</label>
 
                             <div class="col-md-6">
-                                <input id="phone"
+                                <input id="phones"
                                        type="text"
                                        class="form-control"
-                                       name="phone"
-                                       value="{{ old('phone') }}">
+                                       name="phones"
+                                       value="{{ old('phones') }}">
 
-                                @if ($errors->has('phone'))
+                                @if ($errors->has('phones'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('phone') }}</strong>
+                                        <strong>{{ $errors->first('phones') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -110,7 +110,7 @@
                                        type="text"
                                        class="form-control"
                                        name="mobile"
-                                       value="{{ old('phone') }}">
+                                       value="{{ old('mobile') }}">
 
                                 @if ($errors->has('mobile'))
                                     <span class="help-block">
@@ -128,12 +128,31 @@
                                        type="text"
                                        class="form-control"
                                        name="address"
-                                       value="{{ old('phone') }}"
+                                       value="{{ old('address') }}"
                                        required>
 
                                 @if ($errors->has('address'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('postal_code') ? ' has-error' : '' }}">
+                            <label for="postal_code" class="col-md-4 control-label">@lang('app.postal_code')</label>
+
+                            <div class="col-md-6">
+                                <input id="address"
+                                       type="text"
+                                       class="form-control"
+                                       name="postal_code"
+                                       value="{{ old('postal_code') }}"
+                                       required>
+
+                                @if ($errors->has('postal_code'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('postal_code') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -148,6 +167,25 @@
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('car_plate') ? ' has-error' : '' }}">
+                            <label for="car_plate" class="col-md-4 control-label">@lang('app.car_plate')</label>
+
+                            <div class="col-md-6">
+                                <input id="address"
+                                       type="text"
+                                       class="form-control"
+                                       name="car_plate"
+                                       value="{{ old('car_plate') }}"
+                                       required>
+
+                                @if ($errors->has('car_plate'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('car_plate') }}</strong>
                                     </span>
                                 @endif
                             </div>

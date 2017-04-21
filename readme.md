@@ -1,1 +1,1 @@
-Aplicación en desarollo.
+Aplicación en desarollo. No descargar.

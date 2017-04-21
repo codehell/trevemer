@@ -40,9 +40,9 @@ class ClientController extends Controller
         return redirect(route('order.create', $client))->with('success');
     }
 
-    public function show(User $user)
+    public function show(Client $client)
     {
-        return $user;
+        return $client;
     }
     public function edit(Client $client)
     {

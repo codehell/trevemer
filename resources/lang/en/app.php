@@ -3,17 +3,19 @@
 return [
     'snd_last_name' => '2nd Last name',
     'address' => 'Address',
+    'car_plate' => 'Car Plate',
     'edit' => 'Edit',
+    'email' => 'E-Mail Address',
     'first_name' => 'Fist name',
+    'id_card' => 'Id Card',
     'last_name' => 'Last name',
     'mobile' => 'Mobile',
     'name' => 'Name',
     'note' => 'Notes',
     'phones'  => 'Phones',
+    'postal_code' => 'Postal Code',
     'register' => 'Register',
     'update' => 'Update',
-    'email' => 'E-Mail Address',
-    'id_card' => 'Id Card',
     'search' => 'Search',
 
     'client' => [

@@ -1,5 +1,7 @@
 <?php
 
+//Able routes for all system users
+
 // Users
 
 Route::get('user/edit', [
@@ -16,4 +18,9 @@ Route::post('user/edit', [
 Route::get('client/index', [
     'uses' => 'ClientController@index',
     'as' => 'client.index',
+]);
+
+Route::get('client/{client}', [
+    'uses' => 'ClientController@show',
+    'as' => 'client.show'
 ]);
