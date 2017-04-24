@@ -37,7 +37,8 @@ class ClientController extends Controller
             'email' => 'unique:clients',
         ]);
         $client = Client::create($request->all());
-        return redirect(route('order.create', $client))->with('success');
+        return redirect(route('client.show', $client))
+            ->with('success', trans('app.client.create_success'));
     }
 
     public function show(Client $client)

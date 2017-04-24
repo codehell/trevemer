@@ -23,6 +23,7 @@ return [
         'create' => 'New Client',
         'edit_title' => 'Client edition',
         'update_success' => 'The client :name was successfully updated',
+        'create_success' => 'The new client was successfully registered',
         'list' => 'Clients list',
     ],
 
@@ -32,6 +33,11 @@ return [
         'plate' => 'Plate',
         'serial' => 'Serial',
         'trademark' => 'Trademark',
+        'power' => 'Power',
+        'displacement' => 'Cylinder Capacity',
+        'cams' => 'Cams',
+        'color' => 'Color',
+        'doors' => 'Doors Number',
     ],
 
     'user' => [

@@ -25,11 +25,12 @@ class CreateVehicleTest extends TestCase
     function manager_can_post_a_new_vehicle()
     {
         $manager = $this->newManager();
-        $vehicle = factory(Vehicle::class)->make()->toArray();
+        $vehicleData = factory(Vehicle::class)->make()->toArray();
         $this->actingAs($manager);
-        $redirect = $this->post(route('vehicle.create'), $vehicle)
+        $redirect = $this->post(route('vehicle.create'), $vehicleData)
             ->assertStatus(302);
-        $this->assertDatabaseHas('vehicles', $vehicle);
+        $this->assertDatabaseHas('vehicles', $vehicleData);
+        $vehicle = Vehicle::where('plate', $vehicleData['plate'])->first();
         $redirect->assertRedirect(route('vehicle.show', $vehicle));
     }
 }

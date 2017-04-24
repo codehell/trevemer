@@ -36,7 +36,7 @@ class CreateClientTest extends TestCase
 
         $client = Client::where('email', 'client@dominio.loc')->first();
 
-        $response->assertRedirect(route('order.create', $client));
+        $response->assertRedirect(route('client.show', $client));
     }
 
 
