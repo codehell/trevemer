@@ -10,8 +10,12 @@ class RegisterUserTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /** @test    */
-    function a_admin_can_register_a_new_user()
+    /**
+     * Admin can access to new user registration form
+     *
+     * @test
+     */
+    function user_registration_access()
     {
         $user = $this->newAdmin();
 
@@ -19,6 +23,14 @@ class RegisterUserTest extends TestCase
         $this->actingAs($user)
             ->get(route('register'))
             ->assertStatus(200);
+    }
+
+    /** @test    */
+    function user_register_test()
+    {
+        $user = $this->newAdmin();
+
+        $this->actingAs($user);
 
         // when
         $response = $this->post(route('register'), [
@@ -42,6 +54,7 @@ class RegisterUserTest extends TestCase
     /** @test */
     function a_manager_cant_register_a_new_user()
     {
+
         $this->actingAs($this->newManager());
         // When
         $response = $this->post(route('register'), [

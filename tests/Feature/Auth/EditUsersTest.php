@@ -11,8 +11,11 @@ class EditUsersTest extends TestCase
 
     use DatabaseTransactions;
 
-    /** @test */
-    function a_user_can_edit_his_profile()
+    /**
+     * Test a user can access to his edit profile form
+     * @test
+     */
+    function edit_user_profile_access_test()
     {
         $user = factory(User::class)->create();
 
@@ -20,6 +23,14 @@ class EditUsersTest extends TestCase
             ->get(route('user.edit'))
             ->assertStatus(200)
             ->assertSee($user->email);
+    }
+
+    /** @test */
+    function a_user_can_edit_his_profile()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user);
 
         $response = $this->post(route('user.edit'), [
             'name' => 'codehell',

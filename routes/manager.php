@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 // Clients
 
@@ -24,6 +24,17 @@ Route::group(['prefix' => 'client'], function () {
 
 });
 
+Route::group(['prefix' => 'vehicle'], function () {
+
+    Route::get('create', [
+        'uses' => 'VehicleController@create',
+        'as' => 'vehicle.create'
+    ]);
+
+    Route::post('create', [
+        'uses' => 'VehicleController@store'
+    ]);
+});
 
 // Orders
 

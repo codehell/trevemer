@@ -11,7 +11,19 @@ class EditClientTest extends TestCase
     use DatabaseTransactions;
 
     /** @test */
-    public function a_manager_can_edit_a_client()
+    function a_manager_can_edit_a_client()
+    {
+        $manager = $this->newManager();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($manager)
+            ->get(route('client.edit', $client))
+            ->assertStatus(200)
+            ->assertSee($client->first_name);
+    }
+
+    /** @test */
+    function a_manager_can_modify_a_client_data()
     {
         $data = $this->clientData();
 
@@ -31,10 +43,7 @@ class EditClientTest extends TestCase
         $manager = $this->newManager();
         $client = factory(Client::class)->create($data);
 
-        $this->actingAs($manager)
-            ->get(route('client.edit', $client))
-            ->assertStatus(200)
-            ->assertSee($client->first_name);
+        $this->actingAs($manager);
 
         $response = $this->post(route('client.edit', $client), $modified);
         $this->assertDatabaseHas('clients', $modified);

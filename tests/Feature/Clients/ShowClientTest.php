@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class ShowClientTest extends TestCase
 {
     /** @test */
-    public function a_user_can_view_client_data()
+    function a_user_can_view_client_data()
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create();

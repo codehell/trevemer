@@ -12,17 +12,25 @@ class CreateClientTest extends TestCase
     use DatabaseTransactions;
 
     /** @test */
-    function a_manager_can_create_a_client()
+
+    function manager_can_register_a_client()
+    {
+        $user = $this->newManager();
+
+        $this->actingAs($user)
+            ->get('client/create')
+            ->assertStatus(200);
+    }
+    /** @test */
+    function a_manager_can_post_a_new_client()
     {
         $user = $this->newManager();
 
         $data = $this->clientData();
 
-        $this->actingAs($user)
-            ->get('client/create')
-            ->assertStatus(200);
+        $this->actingAs($user);
 
-        $response = $this->post('client/create', $data);
+        $response = $this->post(route('client.create'), $data);
 
         $this->assertDatabaseHas('clients', $data);
 

@@ -26,6 +26,14 @@ return [
         'list' => 'Clients list',
     ],
 
+    'vehicle' => [
+        'create_title' => 'Vehicle registration page',
+        'model' => 'Model',
+        'plate' => 'Plate',
+        'serial' => 'Serial',
+        'trademark' => 'Trademark',
+    ],
+
     'user' => [
         'delete_success' => 'The user :name was successfully deleted'
     ]

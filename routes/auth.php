@@ -24,3 +24,10 @@ Route::get('client/{client}', [
     'uses' => 'ClientController@show',
     'as' => 'client.show'
 ]);
+
+//Vehicles
+
+Route::get('vehicle/{vehicle}', [
+    'uses' => 'VehicleController@show',
+    'as' => 'vehicle.show'
+]);
