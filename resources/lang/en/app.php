@@ -28,8 +28,11 @@ return [
     ],
 
     'vehicle' => [
+        'client_id' => 'Client Id',
         'create_title' => 'Vehicle registration page',
+        'kilometers' => 'Kilometers',
         'model' => 'Model',
+        'create' => 'New Vehicle',
         'plate' => 'Plate',
         'serial' => 'Serial',
         'trademark' => 'Trademark',

@@ -7,8 +7,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading">@lang('app.vehicle.create_title')</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" action="{{ route('vehicle.create') }}">
+                    <form class="form-horizontal" role="form" method="post" action="{{ route('vehicle.create') }}">
                         {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('client_id') }}">
+                            <label for="client_id" class="col-md-4 control-label">@lang('app.vehicle.client_id')</label>
+                            <div class="col-md-6">
+                                <input id="client_id"
+                                       type="text"
+                                       class="form-control"
+                                       name="client_id"
+                                       value="{{ old('client_id', $client_id) }}"
+                                       required autofocus>
+                                @if ($errors->has('client_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('client_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('trademark') }}">
                             <label for="trademark" class="col-md-4 control-label">@lang('app.vehicle.trademark')</label>
                             <div class="col-md-6">
@@ -110,6 +126,17 @@
                                        class="form-control"
                                        name="doors"
                                        value="{{ old('doors') }}"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('kilometers') }}">
+                            <label for="trademark" class="col-md-4 control-label">@lang('app.vehicle.kilometers')</label>
+                            <div class="col-md-6">
+                                <input id="kilometers"
+                                       type="text"
+                                       class="form-control"
+                                       name="kilometers"
+                                       value="{{ old('kilometers') }}"
                                        required>
                             </div>
                         </div>

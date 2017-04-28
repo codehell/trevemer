@@ -33,4 +33,10 @@ class CreateVehicleTest extends TestCase
         $vehicle = Vehicle::where('plate', $vehicleData['plate'])->first();
         $redirect->assertRedirect(route('vehicle.show', $vehicle));
     }
+
+    /** @test */
+    function vehicle_serial_must_be_unique()
+    {
+
+    }
 }
