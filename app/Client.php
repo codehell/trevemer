@@ -16,7 +16,6 @@ class Client extends Model
     public function scopeSearch($query, $search) {
         return $query->where(\DB::raw("concat(first_name, ' ', last_name)"), 'like', "%{$search}%")
             ->orWhere('last_name', 'like', "%{$search}%")
-            ->orWhere('phones', 'like', "%{$search}%")
             ->orWhere('mobile', 'like', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%")
             ->orWhere('id_card', 'like', "%{$search}%")

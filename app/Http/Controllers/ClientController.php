@@ -33,7 +33,6 @@ class ClientController extends Controller
             'last_name' => 'required',
             'snd_last_name' => 'required',
             'id_card' => 'required|unique:clients',
-            'phone' => 'required_without:mobile',
             'email' => 'unique:clients',
         ]);
         $client = Client::create($request->all());
@@ -45,6 +44,7 @@ class ClientController extends Controller
     {
         return view('clients.show', compact('client'));
     }
+
     public function edit(Client $client)
     {
         return view('clients.edit', compact('client'));

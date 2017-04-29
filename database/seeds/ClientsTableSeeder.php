@@ -11,6 +11,12 @@ class ClientsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Cawoch\Client::class)->times(50)->create();
+        for ($i = 0; $i < 50; $i++) {
+            $client = factory(\Cawoch\Client::class)->create();
+            factory(\Cawoch\Phone::class)->create([
+                'client_id' => $client->id
+            ]);
+        }
+
     }
 }

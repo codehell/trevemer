@@ -31,7 +31,6 @@ abstract class TestCase extends BaseTestCase
             'snd_last_name' => 'Cuesta',
             'id_card' => '44444444A',
             'mobile' => '650900000',
-            'phones' => '963111111 666554433',
             'address' => 'Calle Humanista Centollo 1-A',
             'postal_code' => '46018',
             'email' => 'client@dominio.loc',

@@ -32,7 +32,6 @@ $factory->define(Cawoch\Client::class, function (Faker\Generator $faker) {
         'snd_last_name' => $faker->lastName,
         'id_card' => $faker->randomNumber(8).$faker->randomLetter,
         'mobile' => $faker->phoneNumber,
-        'phones' => $faker->phoneNumber . ' ' . $faker->phoneNumber,
         'address' => $faker->address,
         'postal_code' => $faker->postcode,
         'email' => $faker->unique()->email,
@@ -57,5 +56,15 @@ $factory->define(Cawoch\Vehicle::class, function (Faker\Generator $faker) {
         'color' => $faker->colorName,
         'doors' => $faker->numberBetween(2, 8),
         'kilometers' => $faker->numberBetween(0, 500000),
+    ];
+});
+
+$factory->define(Cawoch\Phone::class, function (Faker\Generator $faker) {
+
+    return [
+        'client_id' => function () {
+            return factory(Cawoch\Client::class)->create()->id;
+        },
+        'number' => $faker->phoneNumber,
     ];
 });
