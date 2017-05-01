@@ -34,7 +34,6 @@ class EditClientTest extends TestCase
             'id_card' => '54444444B',
             'address' => 'Calle Humanista Centollo 1-B',
             'email' => 'client@dominio.lo',
-            'car_plate' => '4567ABC',
             'note' => 'Cliente nada exigente pero que pone pegas en cuanto a los presupuestos'
         ];
 

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Clients;
 
 use Cawoch\Client;
+use Cawoch\Phone;
 use Cawoch\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -12,9 +13,11 @@ class ListClientsTest extends TestCase
     use DatabaseTransactions;
 
     /** @test   */
-    function a_user_can_list_clients()
+    function user_list_clients()
     {
-        $clients = factory(Client::class)->times(60)->create()->sortByDesc('id');
+        $clients = factory(Client::class)->times(60)->create()->each(function ($c) {
+            $c->phones()->save(factory(Phone::class)->make());
+        })->sortByDesc('id');
 
         $this->actingAs(factory(User::class)->create())
             ->get(route('client.index'))
@@ -34,14 +37,23 @@ class ListClientsTest extends TestCase
     }
 
     /** @test */
-    function a_user_can_search_clients_by_id_card()
+    function user_search_clients_by_id_card()
     {
-        $clients = factory(Client::class)->times(60)->create();
+        $clients = factory(Client::class)->times(60)->create()->each(function ($c) {
+            $c->phones()->save(factory(Phone::class)->make());
+        });
+        factory(Client::class, 1)->create([
+            'id_card' => '44850555M',
+            'email' => 'faker@ggmail.com'
+        ])->each(function ($c) {
+            $c->phones()->save(factory(Phone::class)->make());
+        });
         $random = $clients->random();
         $this->actingAs(factory(User::class)->create())
-            ->get(route('client.index', ['search' => $random->id_card]))
+            ->get(route('client.index', ['search' => '44850555M']))
             ->assertStatus(200)
-            ->assertSee($random->email);
+            ->assertSee('faker@ggmail.com');
+
     }
 
     /** @test */

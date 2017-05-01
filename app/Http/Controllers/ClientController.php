@@ -12,7 +12,6 @@ class ClientController extends Controller
 
     public function index(Request $request)
     {
-
         $search = '';
         if ($request->has('search')) {
             $search = $request->get('search');
@@ -20,6 +19,7 @@ class ClientController extends Controller
         } else {
             $clients = Client::orderBy('id', 'desc')->paginate();
         }
+
         return view('clients.index', compact('clients', 'search'));
     }
 

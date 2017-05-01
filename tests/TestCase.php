@@ -33,7 +33,6 @@ abstract class TestCase extends BaseTestCase
             'address' => 'Calle Humanista Centollo 1-A',
             'postal_code' => '46018',
             'email' => 'client@dominio.loc',
-            'car_plate' => '4567ABC',
             'note' => 'Cliente muy exigente pero que no pone pegas en cuanto a los presupuestos'
         ];
         if (count($data) != 0) {

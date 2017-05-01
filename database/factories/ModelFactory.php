@@ -34,7 +34,6 @@ $factory->define(Cawoch\Client::class, function (Faker\Generator $faker) {
         'address' => $faker->address,
         'postal_code' => $faker->postcode,
         'email' => $faker->unique()->email,
-        'car_plate' => $faker->regexify('[0-9]{4}[A-Z]{3}'),
         'note' => $faker->paragraphs(3, true),
     ];
 });
@@ -61,9 +60,7 @@ $factory->define(Cawoch\Vehicle::class, function (Faker\Generator $faker) {
 $factory->define(Cawoch\Phone::class, function (Faker\Generator $faker) {
 
     return [
-        'client_id' => function () {
-            return factory(Cawoch\Client::class)->create()->id;
-        },
+
         'number' => $faker->phoneNumber,
     ];
 });

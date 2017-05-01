@@ -41,8 +41,8 @@
                                 <td><a href="{{ route('client.show', $client) }}">{{ $client->id }}</a></td>
                                 <td>{{ $client->first_name }}</td>
                                 <td>{{ $client->last_name }}</td>
-                                <td>{{ $client->phones->first()->number }}</td>
-                                <td>{{ $client->email }}</td>
+                                <td>{{ $client->phones->first()->number or '' }}</td>
+                                <td>{{ $client->email}}</td>
                                 <td>{{ $client->id_card }}</td>
                             </tr>
                         @endforeach

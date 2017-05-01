@@ -1,5 +1,7 @@
 <?php
 
+use Cawoch\Client;
+use Cawoch\Phone;
 use Illuminate\Database\Seeder;
 
 class ClientsTableSeeder extends Seeder
@@ -11,12 +13,8 @@ class ClientsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 50; $i++) {
-            $client = factory(\Cawoch\Client::class)->create();
-            factory(\Cawoch\Phone::class)->create([
-                'client_id' => $client->id
-            ]);
-        }
-
+        factory(Client::class)->times(60)->create()->each(function ($c) {
+            $c->phones()->save(factory(Phone::class)->make());
+        })->sortByDesc('id');
     }
 }

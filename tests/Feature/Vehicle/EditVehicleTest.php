@@ -6,16 +6,16 @@ use Cawoch\Vehicle;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class CreateVehicleTest extends TestCase
+class EditVehicleTest extends TestCase
 {
     use DatabaseTransactions;
 
     /** @test */
-    function manager_can_register_a_new_vehicle()
+    function manager_can_edit_a_new_vehicle()
     {
         $manager = $this->newManager();
         $this->actingAs($manager)
-            ->get(route('vehicle.create'))
+            ->get(route('vehicle.edit'))
             ->assertStatus(200)
             ->assertSee('Vehicle registration page');
     }
