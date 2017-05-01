@@ -30,7 +30,6 @@ abstract class TestCase extends BaseTestCase
             'last_name' => 'Perez',
             'snd_last_name' => 'Cuesta',
             'id_card' => '44444444A',
-            'mobile' => '650900000',
             'address' => 'Calle Humanista Centollo 1-A',
             'postal_code' => '46018',
             'email' => 'client@dominio.loc',

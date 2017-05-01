@@ -2,6 +2,7 @@
 
 namespace Cawoch\Http\Controllers;
 
+use Cawoch\Phone;
 use Cawoch\Client;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -11,6 +12,7 @@ class ClientController extends Controller
 
     public function index(Request $request)
     {
+
         $search = '';
         if ($request->has('search')) {
             $search = $request->get('search');
@@ -33,9 +35,12 @@ class ClientController extends Controller
             'last_name' => 'required',
             'snd_last_name' => 'required',
             'id_card' => 'required|unique:clients',
+            'phone' => 'required',
             'email' => 'unique:clients',
         ]);
-        $client = Client::create($request->all());
+        $client = Client::create($request->except('phone'));
+        $phone = new Phone(['number' => $request->get('phone')]);
+        $client->phones()->save($phone);
         return redirect(route('client.show', $client))
             ->with('success', trans('app.client.create_success'));
     }
@@ -57,7 +62,6 @@ class ClientController extends Controller
             'last_name' => 'required',
             'snd_last_name' => 'required',
             'id_card' => ['required', Rule::unique('clients')->ignore($client->id)],
-            'phone' => 'required_without:mobile',
             'email' => [Rule::unique('clients')->ignore($client->id)],
         ]);
 

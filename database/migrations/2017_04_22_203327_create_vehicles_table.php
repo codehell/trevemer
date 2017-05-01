@@ -23,7 +23,7 @@ class CreateVehiclesTable extends Migration
             $table->string('trademark');
             $table->string('model');
             $table->string('plate');
-            $table->string('serial');
+            $table->string('serial')->unique();
             $table->unsignedSmallInteger('power');
             $table->unsignedSmallInteger('displacement');
             $table->unsignedTinyInteger('cams');

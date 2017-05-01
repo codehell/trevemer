@@ -23,19 +23,24 @@ class CreateClientTest extends TestCase
     }
 
     /** @test */
-    function a_manager_can_post_a_new_client()
+    function manager_register_new_client()
     {
-        $user = $this->newManager();
+        $manager = $this->newManager();
 
-        $data = $this->clientData();
+        $data = factory(Client::class)->make()->toArray();
 
-        $this->actingAs($user);
+        $this->actingAs($manager);
+        $data['phone'] = '913777777';
 
         $response = $this->post(route('client.create'), $data);
 
+        unset($data['phone']);
         $this->assertDatabaseHas('clients', $data);
-
-        $client = Client::where('email', 'client@dominio.loc')->first();
+        $client = Client::first();
+        $this->assertDatabaseHas('phones', [
+            'client_id' => $client->id,
+            'number' => '913777777'
+        ]);
 
         $response->assertRedirect(route('client.show', $client));
     }
@@ -89,23 +94,4 @@ class CreateClientTest extends TestCase
         );
 
     }
-
-    /** @test */
-    /*function phone_are_required_if_mobile_is_not_present()
-    {
-        $manager = $this->newManager();
-
-        $this->actingAs($manager);
-
-        $data = $this->clientData();
-        $data['phone'] = '';
-        $data['mobile'] = '';
-
-        $this->post(route('client.create'), $data);
-
-        $this->assertEquals(
-            'The phone field is required when mobile is not present.',
-            session()->get('errors')->first('phone')
-        );
-    }*/
 }

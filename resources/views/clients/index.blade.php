@@ -31,7 +31,7 @@
                                 <th>ID</th>
                                 <th>@lang('app.first_name')</th>
                                 <th>@lang('app.last_name')</th>
-                                <th>@lang('app.mobile')</th>
+                                <th>@lang('app.phone')</th>
                                 <th>@lang('app.email')</th>
                                 <th>@lang('app.id_card')</th>
                             </tr>
@@ -41,7 +41,7 @@
                                 <td><a href="{{ route('client.show', $client) }}">{{ $client->id }}</a></td>
                                 <td>{{ $client->first_name }}</td>
                                 <td>{{ $client->last_name }}</td>
-                                <td>{{ $client->mobile }}</td>
+                                <td>{{ $client->phones->first()->number }}</td>
                                 <td>{{ $client->email }}</td>
                                 <td>{{ $client->id_card }}</td>
                             </tr>

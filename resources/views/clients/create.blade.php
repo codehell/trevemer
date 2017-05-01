@@ -84,37 +84,19 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('phones') ? ' has-error' : '' }}">
-                            <label for="phones" class="col-md-4 control-label">@lang('app.phones')</label>
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="phones" class="col-md-4 control-label">@lang('app.phone')</label>
 
                             <div class="col-md-6">
-                                <input id="phones"
+                                <input id="phone"
                                        type="text"
                                        class="form-control"
-                                       name="phones"
-                                       value="{{ old('phones') }}">
+                                       name="phone"
+                                       value="{{ old('phone') }}">
 
-                                @if ($errors->has('phones'))
+                                @if ($errors->has('phone'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('phones') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
-                            <label for="mobile" class="col-md-4 control-label">@lang('app.mobile')</label>
-
-                            <div class="col-md-6">
-                                <input id="mobile"
-                                       type="text"
-                                       class="form-control"
-                                       name="mobile"
-                                       value="{{ old('mobile') }}">
-
-                                @if ($errors->has('mobile'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
                             </div>

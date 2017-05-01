@@ -20,7 +20,7 @@ class CreatePhonesTable extends Migration
                 ->references('id')
                 ->on('clients')
                 ->onDelete('cascade');
-            $table->string('number');
+            $table->string('number', 32);
             $table->timestamps();
         });
     }

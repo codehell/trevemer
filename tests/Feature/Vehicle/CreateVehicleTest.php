@@ -27,16 +27,24 @@ class CreateVehicleTest extends TestCase
         $manager = $this->newManager();
         $vehicleData = factory(Vehicle::class)->make()->toArray();
         $this->actingAs($manager);
-        $redirect = $this->post(route('vehicle.create'), $vehicleData)
+        $response = $this->post(route('vehicle.create'), $vehicleData)
             ->assertStatus(302);
         $this->assertDatabaseHas('vehicles', $vehicleData);
         $vehicle = Vehicle::where('plate', $vehicleData['plate'])->first();
-        $redirect->assertRedirect(route('vehicle.show', $vehicle));
+        $response->assertRedirect(route('vehicle.show', $vehicle));
     }
 
     /** @test */
     function vehicle_serial_must_be_unique()
     {
-
+        $manager = $this->newManager();
+        $vehicle = factory(Vehicle::class)->create();
+        $another_vehicle = factory(Vehicle::class)->make([
+            'serial' => $vehicle->serial
+        ]);
+        $this->actingAs($manager);
+        $response = $this->post(route('vehicle.create'), $another_vehicle->toArray())
+            ->assertStatus(302);
+        $response->assertSessionHasErrors('serial', 'The serial has already been taken.');
     }
 }

@@ -12,6 +12,7 @@ return [
     'mobile' => 'Mobile',
     'name' => 'Name',
     'note' => 'Notes',
+    'phone' => 'Phone',
     'phones'  => 'Phones',
     'postal_code' => 'Postal Code',
     'register' => 'Register',

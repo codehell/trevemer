@@ -19,7 +19,8 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'client_id' => 'required|exists:clients,id'
+            'client_id' => 'required|exists:clients,id',
+            'serial' => 'required|unique:vehicles'
         ]);
         $vehicle = Vehicle::create($request->all());
         return redirect(route('vehicle.show', $vehicle));
