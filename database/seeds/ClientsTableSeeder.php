@@ -2,6 +2,7 @@
 
 use Cawoch\Client;
 use Cawoch\Phone;
+use Cawoch\Vehicle;
 use Illuminate\Database\Seeder;
 
 class ClientsTableSeeder extends Seeder
@@ -14,6 +15,7 @@ class ClientsTableSeeder extends Seeder
     public function run()
     {
         factory(Client::class)->times(60)->create()->each(function ($c) {
+            $c->vehicles()->save(factory(Vehicle::class)->make());
             $c->phones()->save(factory(Phone::class)->make());
         })->sortByDesc('id');
     }

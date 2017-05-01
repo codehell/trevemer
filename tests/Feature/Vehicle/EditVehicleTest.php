@@ -13,37 +13,19 @@ class EditVehicleTest extends TestCase
     /** @test */
     function manager_can_edit_a_new_vehicle()
     {
+        $vehicle = factory(Vehicle::class)->create();
         $manager = $this->newManager();
         $this->actingAs($manager)
-            ->get(route('vehicle.edit'))
+            ->get(route('vehicle.edit', $vehicle))
             ->assertStatus(200)
-            ->assertSee('Vehicle registration page');
+            ->assertSee(trans('app.vehicle.edit_title'));
     }
 
     /** @test */
-    function manager_can_post_a_new_vehicle()
+    function manager_modify_post_vehicle()
     {
         $manager = $this->newManager();
         $vehicleData = factory(Vehicle::class)->make()->toArray();
         $this->actingAs($manager);
-        $response = $this->post(route('vehicle.create'), $vehicleData)
-            ->assertStatus(302);
-        $this->assertDatabaseHas('vehicles', $vehicleData);
-        $vehicle = Vehicle::where('plate', $vehicleData['plate'])->first();
-        $response->assertRedirect(route('vehicle.show', $vehicle));
-    }
-
-    /** @test */
-    function vehicle_serial_must_be_unique()
-    {
-        $manager = $this->newManager();
-        $vehicle = factory(Vehicle::class)->create();
-        $another_vehicle = factory(Vehicle::class)->make([
-            'serial' => $vehicle->serial
-        ]);
-        $this->actingAs($manager);
-        $response = $this->post(route('vehicle.create'), $another_vehicle->toArray())
-            ->assertStatus(302);
-        $response->assertSessionHasErrors('serial', 'The serial has already been taken.');
     }
 }

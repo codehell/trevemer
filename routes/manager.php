@@ -24,6 +24,8 @@ Route::group(['prefix' => 'client'], function () {
 
 });
 
+// Vehicles
+
 Route::group(['prefix' => 'vehicle'], function () {
 
     Route::get('create', [
@@ -33,6 +35,15 @@ Route::group(['prefix' => 'vehicle'], function () {
 
     Route::post('create', [
         'uses' => 'VehicleController@store'
+    ]);
+
+    Route::get('{vehicle}/edit', [
+        'uses' => 'VehicleController@edit',
+        'as' => 'vehicle.edit'
+    ]);
+
+    Route::put('{vehicle}/edit', [
+        'uses' => 'VehicleController@update'
     ]);
 });
 

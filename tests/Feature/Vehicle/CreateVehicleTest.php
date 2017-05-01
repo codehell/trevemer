@@ -17,7 +17,7 @@ class CreateVehicleTest extends TestCase
         $this->actingAs($manager)
             ->get(route('vehicle.create'))
             ->assertStatus(200)
-            ->assertSee('Vehicle registration page');
+            ->assertSee(trans('app.vehicle.create_title'));
     }
 
     /** @test */

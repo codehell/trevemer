@@ -31,6 +31,7 @@ return [
     'vehicle' => [
         'client_id' => 'Client Id',
         'create_title' => 'Vehicle registration page',
+        'edit_title' => 'Vehicle editing page',
         'kilometers' => 'Kilometers',
         'model' => 'Model',
         'create' => 'New Vehicle',

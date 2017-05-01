@@ -26,6 +26,16 @@ class VehicleController extends Controller
         return redirect(route('vehicle.show', $vehicle));
     }
 
+    public function edit(Vehicle $vehicle)
+    {
+        return view('vehicles.edit', compact('vehicle'));
+    }
+
+    public function update(Vehicle $vehicle)
+    {
+        return $vehicle;
+    }
+
     public function show(Vehicle $vehicle)
     {
         return $vehicle;
