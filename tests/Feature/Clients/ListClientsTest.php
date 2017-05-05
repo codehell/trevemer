@@ -5,6 +5,7 @@ namespace Tests\Feature\Clients;
 use Cawoch\Client;
 use Cawoch\Phone;
 use Cawoch\User;
+use Cawoch\Vehicle;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -37,23 +38,31 @@ class ListClientsTest extends TestCase
     }
 
     /** @test */
-    function user_search_clients_by_id_card()
+    function search_clients()
     {
         $clients = factory(Client::class)->times(60)->create()->each(function ($c) {
             $c->phones()->save(factory(Phone::class)->make());
         });
+
+        $user = factory(User::class)->create();
         factory(Client::class, 1)->create([
             'id_card' => '44850555M',
-            'email' => 'faker@ggmail.com'
+            'email' => 'faker@ggmail.com',
         ])->each(function ($c) {
             $c->phones()->save(factory(Phone::class)->make());
+            $c->vehicles()->save(factory(Vehicle::class)->make([
+                'plate' => '1234 ABC'
+            ]));
         });
-        $random = $clients->random();
-        $this->actingAs(factory(User::class)->create())
+
+        $this->actingAs($user)
             ->get(route('client.index', ['search' => '44850555M']))
             ->assertStatus(200)
             ->assertSee('faker@ggmail.com');
 
+        $this->get(route('client.index', ['search' => '1234 ABC']))
+            ->assertStatus(200)
+            ->assertSee('faker@ggmail.com');
     }
 
     /** @test */

@@ -16,8 +16,15 @@
                 <div class="panel-body">
                     <ul>
                         <li>@lang('app.id_card'): {{ $client->id_card }}</li>
-                        <li>@lang('app.mobile'): {{ $client->mobile }}</li>
-                        <li>@lang('app.phones'): {{ $client->phones }}</li>
+                        <li>@lang('app.phones'):
+                            <ul>
+                                @foreach($client->phones as $phone)
+                                    <li>
+                                        {{ $phone->number }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                         <li>@lang('app.address'): {{ $client->address }} - {{ $client->postal_code }}</li>
                         <li>@lang('app.email'): {{ $client->email }}</li>
                         <li>@lang('app.car_plate'): {{ $client->car_plate }}</li>

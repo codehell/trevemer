@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Vehicle;
 
+use Cawoch\Client;
 use Cawoch\Vehicle;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -24,7 +25,9 @@ class CreateVehicleTest extends TestCase
     function manager_can_post_a_new_vehicle()
     {
         $manager = $this->newManager();
-        $vehicleData = factory(Vehicle::class)->make()->toArray();
+        $vehicleData = factory(Vehicle::class)->make([
+            'client_id' => factory(Client::class)->create()->id
+        ])->toArray();
         $this->actingAs($manager);
         $response = $this->post(route('vehicle.create'), $vehicleData)
             ->assertStatus(302);
@@ -37,7 +40,10 @@ class CreateVehicleTest extends TestCase
     function vehicle_serial_must_be_unique()
     {
         $manager = $this->newManager();
-        $vehicle = factory(Vehicle::class)->create();
+        $client = factory(Client::class)->create();
+        $vehicle = factory(Vehicle::class)->create([
+            'client_id' => $client->id
+        ]);
         $another_vehicle = factory(Vehicle::class)->make([
             'serial' => $vehicle->serial
         ]);

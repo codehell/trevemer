@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Vehicle;
 
+use Cawoch\Client;
 use Cawoch\Vehicle;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -13,7 +14,9 @@ class EditVehicleTest extends TestCase
     /** @test */
     function manager_can_edit_a_new_vehicle()
     {
-        $vehicle = factory(Vehicle::class)->create();
+        $vehicle = factory(Vehicle::class)->create([
+            'client_id' => factory(Client::class)->create()->id
+        ]);
         $manager = $this->newManager();
         $this->actingAs($manager)
             ->get(route('vehicle.edit', $vehicle))
@@ -25,7 +28,12 @@ class EditVehicleTest extends TestCase
     function manager_modify_post_vehicle()
     {
         $manager = $this->newManager();
-        $vehicleData = factory(Vehicle::class)->make()->toArray();
+        $vehicleData = factory(Vehicle::class)->make([
+            'client_id' => factory(Client::class)->create()->id
+        ])->toArray();
         $this->actingAs($manager);
+        $response = $this->post(route('vehicle.create', $vehicleData));
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('vehicles', $vehicleData);
     }
 }

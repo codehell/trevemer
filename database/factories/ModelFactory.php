@@ -41,9 +41,6 @@ $factory->define(Cawoch\Client::class, function (Faker\Generator $faker) {
 $factory->define(Cawoch\Vehicle::class, function (Faker\Generator $faker) {
 
     return [
-        'client_id' => function () {
-            return factory(Cawoch\Client::class)->create()->id;
-        },
         'trademark' => $faker->randomElement(['Renault', 'Citroen', 'Mercedes', 'BMW', 'Porsche', 'Ford']),
         'model' => $faker->word,
         'plate' => $faker->regexify('[0-9]{4}[A-Z]{3}'),

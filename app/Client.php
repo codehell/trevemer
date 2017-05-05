@@ -24,12 +24,15 @@ class Client extends Model
     }
 
     public function scopeSearch($query, $search) {
-        return $query->where(\DB::raw("concat(first_name, ' ', last_name)"), 'like', "%{$search}%")
-            ->join('phones', 'clients.id', '=', 'client_id')
-            ->orWhere('last_name', 'like', "%{$search}%")
+        return $query->select('clients.*')
+            ->leftjoin('phones', 'clients.id', '=', 'phones.client_id')
+            ->leftjoin('vehicles', 'clients.id', '=', 'vehicles.client_id')
+            ->whereRaw("concat(first_name,' ', last_name) like ?", ["%$search%"])
             ->orWhere('email', 'like', "%{$search}%")
             ->orWhere('id_card', 'like', "%{$search}%")
             ->orWhere('number', 'like', "%{$search}%")
+            ->orWhere('plate', 'like', "%{$search}%")
+            ->distinct()
             ->orderBy('clients.id', 'desc')
             ->paginate()
             ->appends(['search' => $search]);
