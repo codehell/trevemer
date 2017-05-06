@@ -48,4 +48,6 @@ class EditClientTest extends TestCase
         $response->assertRedirect(route('client.edit', $client))
             ->assertSessionHas('success', __('app.client.update_success', ['name' => $client->fresh()->name]));
     }
+
+    //TODO: test for add a new phone
 }

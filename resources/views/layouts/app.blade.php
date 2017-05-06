@@ -43,10 +43,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('client.create') }}">@lang('app.client.create')</a></li>
                         @can('manager')
-                            <li><a href="{{ route('client.index') }}">@lang('app.client.list')</a></li>
+                            <li><a href="{{ route('client.create') }}">@lang('app.client.create')</a></li>
                         @endcan
+                        <li><a href="{{ route('client.index') }}">@lang('app.client.list')</a></li>
+                        <li><a href="{{ route('vehicle.index') }}">@lang('app.vehicle.list')</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

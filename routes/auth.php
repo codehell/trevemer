@@ -15,7 +15,7 @@ Route::post('user/edit', [
 
 // Clients
 
-Route::get('client/index', [
+Route::get('clients', [
     'uses' => 'ClientController@index',
     'as' => 'client.index',
 ]);
@@ -30,4 +30,9 @@ Route::get('client/{client}', [
 Route::get('vehicle/{vehicle}', [
     'uses' => 'VehicleController@show',
     'as' => 'vehicle.show'
+]);
+
+Route::get('vehicles', [
+    'uses' => 'VehicleController@index',
+    'as' => 'vehicle.index'
 ]);

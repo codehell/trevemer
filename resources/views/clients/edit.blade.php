@@ -86,39 +86,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('phones') ? ' has-error' : '' }}">
-                            <label for="phones" class="col-md-4 control-label">@lang('app.phones')</label>
+                        <div class="form-group">
+                            <label for="phones" class="col-md-4 control-label">@lang('app.phone')</label>
 
                             <div class="col-md-6">
                                 <input id="phones"
                                        type="text"
                                        class="form-control"
-                                       name="phones"
-                                       value="{{ old('phones', $client->phones) }}">
-
-                                @if ($errors->has('phones'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('phones') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
-                            <label for="mobile" class="col-md-4 control-label">@lang('app.mobile')</label>
-
-                            <div class="col-md-6">
-                                <input id="mobile"
-                                       type="text"
-                                       class="form-control"
-                                       name="mobile"
-                                       value="{{ old('mobile', $client->mobile) }}">
-
-                                @if ($errors->has('mobile'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('mobile') }}</strong>
-                                    </span>
-                                @endif
+                                       value="{{ old('phones', $client->phones->isEmpty() ? '' : $client->phones->last()->number) }}"
+                                disabled>
                             </div>
                         </div>
 
@@ -178,25 +154,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('car_plate') ? ' has-error' : '' }}">
-                            <label for="car_plate" class="col-md-4 control-label">@lang('app.car_plate')</label>
-
-                            <div class="col-md-6">
-                                <input id="address"
-                                       type="text"
-                                       class="form-control"
-                                       name="car_plate"
-                                       value="{{ old('car_plate', $client->car_plate) }}"
-                                       required>
-
-                                @if ($errors->has('car_plate'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('car_plate') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
                             <label for="note" class="col-md-4 control-label">@lang('app.note')</label>
 
@@ -218,6 +175,34 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     @lang('app.update')
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('phone.create', $client) }}">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="note" class="col-md-4 control-label">@lang('app.client.new_phone')</label>
+
+                            <div class="col-md-6">
+                                <input id="phone"
+                                       class="form-control"
+                                       name="phone"
+                                       rows="5"
+                                       value = "{{ old('pone') }}"
+                                >
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    @lang('app.add')
                                 </button>
                             </div>
                         </div>

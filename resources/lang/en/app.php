@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'snd_last_name' => '2nd Last name',
+    'add' => 'Add',
     'address' => 'Address',
     'car_plate' => 'Car Plate',
     'edit' => 'Edit',
@@ -16,6 +16,7 @@ return [
     'phones'  => 'Phones',
     'postal_code' => 'Postal Code',
     'register' => 'Register',
+    'snd_last_name' => '2nd Last name',
     'update' => 'Update',
     'search' => 'Search',
 
@@ -26,6 +27,7 @@ return [
         'update_success' => 'The client :name was successfully updated',
         'create_success' => 'The new client was successfully registered',
         'list' => 'Clients list',
+        'new_phone' => 'New Phone'
     ],
 
     'vehicle' => [

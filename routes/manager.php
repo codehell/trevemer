@@ -22,6 +22,11 @@ Route::group(['prefix' => 'client'], function () {
         'uses' => 'ClientController@update',
     ]);
 
+    Route::post('{client}/addphone', [
+        'uses' => 'ClientController@addPhone',
+        'as' => 'phone.create'
+    ]);
+
 });
 
 // Vehicles

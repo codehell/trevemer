@@ -69,4 +69,11 @@ class ClientController extends Controller
         return redirect(route('client.edit', $client))
             ->with('success', trans('app.client.update_success', ['name' => $client->name]));
     }
+
+    public function addPhone(Request $request, Client $client)
+    {
+        $phone = new Phone(['number' => $request->get('phone')]);
+        $client->phones()->save($phone);
+        return redirect(route('client.edit', $client));
+    }
 }

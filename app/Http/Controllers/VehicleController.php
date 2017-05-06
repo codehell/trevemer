@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+    public function index()
+    {
+        $vehicles = Vehicle::all();
+        return view('vehicles.index', compact('vehicles'));
+    }
+
     public function create(Request $request)
     {
         $client_id = $request->get('client_id');
@@ -31,9 +37,10 @@ class VehicleController extends Controller
         return view('vehicles.edit', compact('vehicle'));
     }
 
-    public function update(Vehicle $vehicle)
+    public function update(Request $request, Vehicle $vehicle)
     {
-        return $vehicle;
+        $vehicle->update($request->all());
+        return redirect(route('vehicle.edit', $vehicle));
     }
 
     public function show(Vehicle $vehicle)

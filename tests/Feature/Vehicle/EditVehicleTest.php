@@ -25,14 +25,19 @@ class EditVehicleTest extends TestCase
     }
 
     /** @test */
-    function manager_modify_post_vehicle()
+    function modify_kilometers_of_vehicle()
     {
         $manager = $this->newManager();
-        $vehicleData = factory(Vehicle::class)->make([
-            'client_id' => factory(Client::class)->create()->id
-        ])->toArray();
+        $vehicle = factory(Vehicle::class)->create([
+            'client_id' => factory(Client::class)->create()->id,
+            'kilometers' => '100000'
+        ]);
+        $vehicleData = $vehicle->toArray();
+
+        $vehicleData['kilometers'] = '150000';
+
         $this->actingAs($manager);
-        $response = $this->post(route('vehicle.create', $vehicleData));
+        $response = $this->put(route('vehicle.edit', $vehicle), $vehicleData);
         $response->assertStatus(302);
         $this->assertDatabaseHas('vehicles', $vehicleData);
     }
