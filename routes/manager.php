@@ -29,6 +29,13 @@ Route::group(['prefix' => 'client'], function () {
 
 });
 
+//Phones
+
+Route::delete('phone/{phone}', [
+    'uses' => 'PhoneController@delete',
+    'as' => 'phone.delete'
+]);
+
 // Vehicles
 
 Route::group(['prefix' => 'vehicle'], function () {

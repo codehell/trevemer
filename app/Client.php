@@ -28,13 +28,14 @@ class Client extends Model
             ->leftjoin('phones', 'clients.id', '=', 'phones.client_id')
             ->leftjoin('vehicles', 'clients.id', '=', 'vehicles.client_id')
             ->whereRaw("concat(first_name,' ', last_name) like ?", ["%$search%"])
+            ->orWhere('snd_last_name', 'like', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%")
             ->orWhere('id_card', 'like', "%{$search}%")
             ->orWhere('number', 'like', "%{$search}%")
             ->orWhere('plate', 'like', "%{$search}%")
-            ->distinct()
+            ->distinct('clients.id')
             ->orderBy('clients.id', 'desc')
-            ->paginate()
+            ->simplePaginate()
             ->appends(['search' => $search]);
     }
 }

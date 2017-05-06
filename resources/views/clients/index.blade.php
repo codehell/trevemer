@@ -6,7 +6,6 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    @lang('app.client.list')
                     <form class="form-inline" role="search" method="get" action="{{ route('client.index') }}">
                         <div class="form-group">
                             <label for="search" class="control-label">@lang('app.search')</label>

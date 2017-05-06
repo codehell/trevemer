@@ -19,9 +19,18 @@
                         <li>@lang('app.phones'):
                             <ul>
                                 @foreach($client->phones as $phone)
-                                    <li>
-                                        {{ $phone->number }}
-                                    </li>
+                                    <div class="row">
+                                        <li>
+                                            <div class="col-md-4">{{ $phone->number }}</div>
+                                            <div class="col-md-1">
+                                                <form method="post" action="{{ route('phone.delete', $phone) }}">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-danger btn-sm">-</button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </div>
                                 @endforeach
                             </ul>
                         </li>
@@ -30,10 +39,17 @@
                         <li>@lang('app.car_plate'): {{ $client->car_plate }}</li>
                         <li>@lang('app.note'): {{ $client->note }}</li>
                     </ul>
-                    <form method="get" action="{{ route('vehicle.create') }}">
-                        <input type="hidden" name="client_id" value="{{ $client->id }}">
-                        <button type="submit">@lang('app.vehicle.create')</button>
-                    </form>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <form method="get" action="{{ route('vehicle.create') }}">
+                                <input type="hidden" name="client_id" value="{{ $client->id }}">
+                                <button class="btn btn-primary" type="submit">@lang('app.vehicle.create')</button>
+                            </form>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-primary" href="{{ route('client.edit', $client) }}">@lang('app.edit')</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

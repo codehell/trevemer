@@ -4,11 +4,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">@lang('app.vehicles.list')</div>
+                <div class="panel-heading"></div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>@lang('app.trademark')</th>
                                 <th>@lang('app.model')</th>
                                 <th>@lang('app.plate')</th>
@@ -19,11 +20,13 @@
                                 <th>@lang('app.color')</th>
                                 <th>@lang('app.doors')</th>
                                 <th>@lang('app.kilometers')</th>
+                                <th>@lang('app.vehicle.client_id')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($vehicles as $vehicle)
                                 <tr>
+                                    <td>{{ $vehicle->id }}</td>
                                     <td>{{ $vehicle->trademark }}</td>
                                     <td>{{ $vehicle->model }}</td>
                                     <td>{{ $vehicle->plate }}</td>
@@ -34,12 +37,14 @@
                                     <td>{{ $vehicle->color }}</td>
                                     <td>{{ $vehicle->doors }}</td>
                                     <td>{{ $vehicle->kilometers }}</td>
+                                    <td>{{ $vehicle->client->id }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            {{ $vehicles->links() }}
         </div>
     </div>
 </div>
