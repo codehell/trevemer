@@ -41,4 +41,23 @@ class EditVehicleTest extends TestCase
         $response->assertStatus(302);
         $this->assertDatabaseHas('vehicles', $vehicleData);
     }
+
+    /** @test */
+    function owner_must_exist()
+    {
+        $manager = $this->newManager();
+        $client = factory(Client::class)->create();
+        $vehicle = factory(Vehicle::class)->create([
+            'client_id' => $client->id,
+            'kilometers' => '100000'
+        ]);
+        $vehicleData = $vehicle->toArray();
+
+        $vehicleData['client_id'] = ++$client->id;
+
+        $this->actingAs($manager);
+        $response = $this->put(route('vehicle.edit', $vehicle), $vehicleData);
+        $response->assertStatus(302)
+            ->assertSessionHasErrors('client_id', 'The selected client id is invalid');
+    }
 }

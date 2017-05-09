@@ -36,7 +36,13 @@
                         </li>
                         <li>@lang('app.address'): {{ $client->address }} - {{ $client->postal_code }}</li>
                         <li>@lang('app.email'): {{ $client->email }}</li>
-                        <li>@lang('app.car_plate'): {{ $client->car_plate }}</li>
+                        <li>@lang('app.vehicle_plate'):
+                            <ul>
+                                @foreach($client->vehicles as $vehicle)
+                                    <li>{{ $vehicle->plate }}</li>
+                                @endforeach
+                            </ul>
+                        </li>
                         <li>@lang('app.note'): {{ $client->note }}</li>
                     </ul>
                     <div class="row">

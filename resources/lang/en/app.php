@@ -4,7 +4,6 @@ return [
     'add' => 'Add',
     'address' => 'Address',
     'cams' => 'Cams',
-    'car_plate' => 'Car Plate',
     'color' => 'Color',
     'displacement' => 'Displacement',
     'doors' => 'Doors',
@@ -24,19 +23,22 @@ return [
     'postal_code' => 'Postal Code',
     'power' => 'Power',
     'register' => 'Register',
+    'search' => 'Search',
     'serial' => 'Serial',
     'snd_last_name' => '2nd Last name',
     'trademark' => 'trademark',
     'update' => 'Update',
-    'search' => 'Search',
+    'vehicle_plate' => 'Vehicle Plate',
 
     'client' => [
         'create_title' => 'Register new client',
         'create' => 'New Client',
         'edit_title' => 'Client edition',
+        'id' => 'Client Id.',
         'update_success' => 'The client :name was successfully updated',
         'create_success' => 'The new client was successfully registered',
         'list' => 'Clients',
+        'name' => 'Client Name',
         'new_phone' => 'New Phone'
     ],
 

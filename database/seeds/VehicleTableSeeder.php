@@ -13,7 +13,7 @@ class VehicleTableSeeder extends Seeder
     {
         $clients = \Cawoch\Client::all();
 
-        for ($i = 0; $i <= 80; $i++) {
+        for ($i = 0; $i <= 40; $i++) {
             factory(\Cawoch\Vehicle::class)->create([
                 'client_id' => $clients->random()->id
             ]);

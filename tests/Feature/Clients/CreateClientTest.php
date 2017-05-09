@@ -84,9 +84,8 @@ class CreateClientTest extends TestCase
             'email' => 'client@dominio.loc',
         ]);
 
-        $this->actingAs($user);
-
-        $this->post(route('client.create'), $this->clientData());
+        $this->actingAs($user)
+            ->post(route('client.create'), $this->clientData());
 
         $this->assertEquals(
             'The email has already been taken.',

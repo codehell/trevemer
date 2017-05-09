@@ -9,7 +9,7 @@ use Cawoch\Vehicle;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ListClientsTest extends TestCase
+class ClientsListTest extends TestCase
 {
     use DatabaseTransactions;
 

@@ -14,7 +14,7 @@ class ClientsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Client::class)->times(60)->create()->each(function ($c) {
+        factory(Client::class)->times(40)->create()->each(function ($c) {
             $c->phones()->save(factory(Phone::class)->make());
         })->sortByDesc('id');
     }

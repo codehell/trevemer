@@ -49,5 +49,17 @@ class EditClientTest extends TestCase
             ->assertSessionHas('success', __('app.client.update_success', ['name' => $client->fresh()->name]));
     }
 
-    //TODO: test for add a new phone
+    /** @test */
+    function add_phone_to_client()
+    {
+        $user = $this->newManager();
+
+        $client = factory(Client::class)->create();
+        $this->actingAs($user)
+            ->post(route('phone.create', $client), ['phone' => '963777777']);
+        $this->assertDatabaseHas('phones', [
+            'number' => '963777777',
+            'client_id' => $client->id,
+        ]);
+    }
 }

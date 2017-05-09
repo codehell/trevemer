@@ -26,7 +26,7 @@
                         <tbody>
                             @foreach($vehicles as $vehicle)
                                 <tr>
-                                    <td>{{ $vehicle->id }}</td>
+                                    <td><a href="{{ route('vehicle.show', $vehicle) }}">{{ $vehicle->id }}</a></td>
                                     <td>{{ $vehicle->trademark }}</td>
                                     <td>{{ $vehicle->model }}</td>
                                     <td>{{ $vehicle->plate }}</td>

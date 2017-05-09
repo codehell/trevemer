@@ -179,7 +179,7 @@
                             </div>
                         </div>
                     </form>
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('phone.create', $client) }}">
+                    <form class="form-horizontal" role="form" method="post" action="{{ route('phone.create', $client) }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="note" class="col-md-4 control-label">@lang('app.client.new_phone')</label>
@@ -189,7 +189,7 @@
                                        class="form-control"
                                        name="phone"
                                        rows="5"
-                                       value = "{{ old('pone') }}"
+                                       value = "{{ old('phone') }}"
                                 >
 
                                 @if ($errors->has('phone'))
