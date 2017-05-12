@@ -12,17 +12,28 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <ul>
-                            <li>@lang('app.client.id'): {{ $vehicle->client->id }}</li>
-                            <li>@lang('app.client.name'): {{ $vehicle->client->first_name . ' ' . $vehicle->client->last_name}}</li>
-                            <li>@lang('app.vehicle.serial'): {{ $vehicle->serial }}</li>
-                            <li>@lang('app.vehicle.power'): {{ $vehicle->power }}</li>
-                            <li>@lang('app.vehicle.displacement'): {{ $vehicle->displacement }}</li>
-                            <li>@lang('app.vehicle.cams'): {{ $vehicle->cams }}</li>
-                            <li>@lang('app.color'): {{ $vehicle->color }}</li>
-                            <li>@lang('app.doors'): {{ $vehicle->doors }}</li>
-                            <li>@lang('app.kilometers'): {{ $vehicle->kilometers }}</li>
-                        </ul>
+                        <dl class="dl-horizontal">
+                            <dt>@lang('app.client.id')</dt>
+                            <dd>{{ $vehicle->client->id }}</dd>
+                            <dt>@lang('app.client.name')</dt>
+                            <dd>{{ $vehicle->client->first_name . ' ' . $vehicle->client->last_name}}</dd>
+                            <dt>@lang('app.vehicle.plate')</dt>
+                            <dd>{{ $vehicle->plate }}</dd>
+                            <dt>@lang('app.vehicle.serial')</dt>
+                            <dd>{{ $vehicle->serial }}</dd>
+                            <dt>@lang('app.vehicle.power')</dt>
+                            <dd>{{ $vehicle->power }}</dd>
+                            <dt>@lang('app.vehicle.displacement')</dt>
+                            <dd>{{ $vehicle->displacement }}</dd>
+                            <dt>@lang('app.vehicle.cams')</dt>
+                            <dd>{{ $vehicle->cams }}</dd>
+                            <dt>@lang('app.color')</dt>
+                            <dd>{{ $vehicle->color }}</dd>
+                            <dt>@lang('app.doors')</dt>
+                            <dd>{{ $vehicle->doors }}</dd>
+                            <dt>@lang('app.kilometers')</dt>
+                            <dd>{{ $vehicle->kilometers }}</dd>
+                        </dl>
                         <a class="btn btn-primary" href="{{ route('vehicle.edit', $vehicle) }}">@lang('app.update')</a>
                     </div>
                 </div>

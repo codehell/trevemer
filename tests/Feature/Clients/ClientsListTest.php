@@ -14,7 +14,7 @@ class ClientsListTest extends TestCase
     use DatabaseTransactions;
 
     /** @test   */
-    function user_list_clients()
+    function clients_list_paginate()
     {
         $clients = factory(Client::class)->times(60)->create()->each(function ($c) {
             $c->phones()->save(factory(Phone::class)->make());
@@ -24,14 +24,14 @@ class ClientsListTest extends TestCase
             ->get(route('client.index'))
             ->assertStatus(200)
             ->assertSee($clients->first()->id_card)
-            ->assertSee($clients->slice(7,1)->first()->email)
+            ->assertSee($clients->slice(7, 1)->first()->email)
             ->assertSee($clients->forPage(1, 15)->last()->id_card);
 
-        $this->get(route('client.index', ['page' => '2']))
+        $this->get(route('client.index', ['page' => 2]))
             ->assertStatus(200)
             ->assertSee($clients->forPage(2, 15)->first()->id_card);
 
-        $this->get(route('client.index', ['page' => '3']))
+        $this->get(route('client.index', ['page' => 3]))
             ->assertStatus(200)
             ->assertSee($clients->forPage(3, 15)->first()->id_card)
             ->assertSee($clients->forPage(3, 15)->last()->id_card);

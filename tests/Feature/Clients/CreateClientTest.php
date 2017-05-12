@@ -62,7 +62,7 @@ class CreateClientTest extends TestCase
     function id_card_must_be_unique()
     {
         $client = factory(Client::class)->create();
-        $id_card = $client->id_card;
+
         $client_data = $this->clientData([
             'id_card' => $client->id_card,
         ]);

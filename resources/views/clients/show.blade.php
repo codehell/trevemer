@@ -14,37 +14,39 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <ul>
-                        <li>@lang('app.id_card'): {{ $client->id_card }}</li>
-                        <li>@lang('app.phones'):
-                            <ul>
-                                @foreach($client->phones as $phone)
-                                    <div class="row">
-                                        <li>
-                                            <div class="col-md-4">{{ $phone->number }}</div>
-                                            <div class="col-md-1">
-                                                <form method="post" action="{{ route('phone.delete', $phone) }}">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-danger btn-sm">-</button>
-                                                </form>
-                                            </div>
-                                        </li>
+                    <dl class="dl-horizontal">
+                        <dt>@lang('app.id_card')</dt>
+                        <dd>{{ $client->id_card }}</dd>
+                        <dt>@lang('app.phones')</dt>
+                        <dd>
+                            @foreach($client->phones as $phone)
+                                <div class="row">
+                                    <div class="col-md-4">{{ $phone->number }}</div>
+                                    <div class="col-md-1">
+                                        <form method="post" action="{{ route('phone.delete', $phone) }}">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-danger btn-sm">-</button>
+                                        </form>
                                     </div>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li>@lang('app.address'): {{ $client->address }} - {{ $client->postal_code }}</li>
-                        <li>@lang('app.email'): {{ $client->email }}</li>
-                        <li>@lang('app.vehicle_plate'):
-                            <ul>
+                                </div>
+                            @endforeach
+                        </dd>
+                        <dt>@lang('app.address')</dt>
+                        <dd>{{ $client->address }} - {{ $client->postal_code }}</dd>
+                        <dt>@lang('app.email')</dt>
+                        <dd>{{ $client->email }}</dd>
+                        <dt>@lang('app.vehicle_plate')</dt>
+                        <dd>
+                            <dl>
                                 @foreach($client->vehicles as $vehicle)
-                                    <li>{{ $vehicle->plate }}</li>
+                                    <dd>{{ $vehicle->plate }}</dd>
                                 @endforeach
-                            </ul>
-                        </li>
-                        <li>@lang('app.note'): {{ $client->note }}</li>
-                    </ul>
+                            </dl>
+                        </dd>
+                        <dt>@lang('app.note')</dt>
+                        <dd>{{ $client->note }}</dd>
+                    </dl>
                     <div class="row">
                         <div class="col-md-2">
                             <form method="get" action="{{ route('vehicle.create') }}">

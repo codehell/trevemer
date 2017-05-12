@@ -22,7 +22,7 @@ class CreateVehicleTest extends TestCase
     }
 
     /** @test */
-    function manager_can_post_a_new_vehicle()
+    function register_a_new_vehicle()
     {
         $manager = $this->newManager();
         $vehicleData = factory(Vehicle::class)->make([

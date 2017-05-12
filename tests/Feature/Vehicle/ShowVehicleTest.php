@@ -24,6 +24,8 @@ class ShowVehicleTest extends TestCase
             ->get(route('vehicle.show', $vehicle))
             ->assertStatus(200)
             ->assertSee($vehicle->trademark)
-            ->assertSee($vehicle->plate);
+            ->assertSee($vehicle->plate)
+            ->assertSee($vehicle->serial)
+            ->assertSee($vehicle->client->first_name);
     }
 }
