@@ -34,7 +34,7 @@
                             <dt>@lang('app.kilometers')</dt>
                             <dd>{{ $vehicle->kilometers }}</dd>
                         </dl>
-                        <a class="btn btn-primary" href="{{ route('vehicle.edit', $vehicle) }}">@lang('app.update')</a>
+                        <a class="btn btn-primary" href="{{ route('vehicle.edit', $vehicle) }}">@lang('app.edit')</a>
                     </div>
                 </div>
             </div>

@@ -21,6 +21,7 @@ class CreateActionsTable extends Migration
                 ->references('id')
                 ->on('orders');
             $table->decimal('amount', 8, 2);
+            $table->timestamp('ended_on');
             $table->timestamps();
         });
     }

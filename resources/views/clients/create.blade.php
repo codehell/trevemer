@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">@lang('app.client.create_title')</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('client.create') }}">
+                    <form class="form-horizontal" role="form" method="post" action="{{ route('client.create') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('firs_name') ? ' has-error' : '' }}">

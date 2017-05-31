@@ -61,7 +61,7 @@ Route::group(['prefix' => 'vehicle'], function () {
 
 // Orders
 
-Route::get('order/{client}/create', [
+Route::get('order/{vehicle}/create', [
     'uses' => 'OrderController@create',
     'as' => 'order.create',
 ]);

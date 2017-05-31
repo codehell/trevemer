@@ -57,7 +57,12 @@ $factory->define(Cawoch\Vehicle::class, function (Faker\Generator $faker) {
 $factory->define(Cawoch\Phone::class, function (Faker\Generator $faker) {
 
     return [
-
         'number' => $faker->phoneNumber,
+    ];
+});
+
+$factory->define(\Cawoch\Order::class, function (Faker\Generator $faker) {
+
+    return [
     ];
 });
